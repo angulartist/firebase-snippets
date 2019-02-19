@@ -71,9 +71,9 @@ const addPlayerToRoom = (opponentId: string, roomRef: FirebaseFirestore.Document
       // If the room is still open, add the opponent
        if (state === STATE.OPEN) {
          t.update(roomRef, { opponentId, state: STATE.CLOSED })
-         return Promise.resolve('Added opponent to the room.');
+         return Promise.resolve('Added opponent to the room. Closed the room.');
        } else {
-         return Promise.reject('Room is not open.');
+         return Promise.reject('Room is full.');
        }
     } catch (error) {
       throw new Error(`Error addPlayerToRoom: ${error}`)
