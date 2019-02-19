@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators'
 destroy$: Subject<boolean> = new Subject<boolean>()
 ```
 
-### Gettings a tweet and it's aggregated distributed counters
+### Getting a tweet and it's aggregated distributed counters
 
 ```ts
 getTweet(tweetId: string) {
