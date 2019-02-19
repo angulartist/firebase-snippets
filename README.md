@@ -37,6 +37,6 @@ getTweet(tweetId: string) {
       }
     )
       .pipe(takeUntil(this.destroy$))
-      .subscribe((post: Post) => (this.post = post))
+      .subscribe((post: Post) => (/* do whatever you please */)
   }
 ```
