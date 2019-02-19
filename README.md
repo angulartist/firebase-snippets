@@ -18,9 +18,9 @@ destroy$: Subject<boolean> = new Subject<boolean>()
 
 > Note: there is a workaround with the RTDB but you have to copy the aggregated data to Firestore using a cron-job or something.
 
-> Note2: there is another workaround using Cloud Dataflow and pubsub topics to aggregate a large amount of user inputs and write them back to Firestore.
+> Note2: there is another workaround using Cloud Dataflow and pubsub topics to aggregate a large amount of user inputs and write them back to Firestore. [https://medium.com/evenbit/aggregate-thousands-of-inputs-per-second-with-firebase-76111212b850](Read more)
+
 ---
-https://medium.com/evenbit/aggregate-thousands-of-inputs-per-second-with-firebase-76111212b850
 
 ```ts
 getTweet(tweetId: string) {
