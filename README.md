@@ -47,7 +47,7 @@ getTweet(tweetId: string) {
         // merging the counter value of each shard
         const countLikes: number = shards.reduce((acc, { count }) => acc + count, 0)
            
-        // returning a new brand object
+        // returning a brand new object
         return { ...post, isLiking, countLikes }
       }
     )
