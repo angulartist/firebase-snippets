@@ -32,23 +32,17 @@ getTweet(tweetId: string) {
     
     const shards$: Observable<{}[]> = collectionData(
       db.collection(`tweets/${tweetId}/shards`), 'id')
-      
-    const userLikesTweet$: Observable<{}> = docData(
-      db.doc(`likes/${this.currentUserIdYouGetFromSomewhere}_${tweetdId}`),
-      'id'
-    )
 
     // combining them into one observable
     combineLatest(
       tweet$,
       shards$,
-      userLikesTweet$,
-      (tweet: Tweet, { isLiking }, shards) => {
+      (tweet: Tweet, shards) => {
         // merging the counter value of each shard
         const countLikes: number = shards.reduce((acc, { count }) => acc + count, 0)
            
         // returning a brand new object
-        return { ...post, isLiking, countLikes }
+        return { ...post, countLikes }
       }
     )
       // fuk u memory leak
