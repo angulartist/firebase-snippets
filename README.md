@@ -22,7 +22,7 @@ getTweet(tweetId: string) {
       db.collection(`tweets/${tweetId}/shards`), 'id')
       
     const userLikesTweet$: Observable<{}> = docData(
-      db.doc(`likes/${this.currentUserId}_${tweetdId}`),
+      db.doc(`likes/${this.currentUserIdYouGetFromSomewhere}_${tweetdId}`),
       'id'
     )
 
