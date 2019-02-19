@@ -61,7 +61,7 @@ getTweet(tweetId: string) {
 ---
 
 ```ts
-const addPlayerToRoom = (opponentId: string, roomRef: FirebaseFirestore.DocumentReference) => {
+const addPlayerToRoom = (opponentId: string, roomRef: FirebaseFirestore.DocumentReference): Promise<void> => {
   return db.runTransaction(async t => {
     try {
       // Getting back the room document
