@@ -1,6 +1,10 @@
 # Some snippets I'm using cuz im lazy boi :fire:
 
 
+```ts
+// here, db is just holding the firestore() function
+```
+
 ### Getting a tweet and it's aggregated distributed counters
 
 > Imagine your tweet goes viral and thousands of users are liking/fav it in a relative small time window. Since Firestore's limit is up to one write/second for a same document, you might get incorrect aggregated data because of too much contention. The idea here is to break your likes counter into multiple fragments called shards and run a transaction on a random shard reference when a user likes a tweet, to.. limit this contention.
@@ -49,4 +53,31 @@ getTweet(tweetId: string) {
       .pipe(takeUntil(this.destroy$))
       .subscribe((post: Post) => (/* do whatever you please */)
   }
+```
+
+### Basic transaction to add a player to a room
+
+> Imagine you have a basic game holding some rooms and each room have 2 slots. One slot for the owner, one slot for the owner's opponent. With some high traffic app, you might get into this situation : multiple players trying to join the same room at the same time. You might end up with 5, 6 or 20 players in a room and that shit gonna breaks. So, to deal with these concurrent situations, you have to use transactions. In this example, we're reading the up-to-date room state before adding a player. If the room is still open... add a player, otherwise reject.
+---
+
+```ts
+const addPlayerToRoom = (opponentId: string, roomRef: FirebaseFirestore.DocumentReference) => {
+  return db.runTransaction(async t => {
+    try {
+      // Getting back the room document
+      const roomSnapshot = await t.get(roomRef)
+      // Grab the key we want to check
+      const { state } = roomSnapshot.data()
+      // If the room is still open, add the opponent
+       if (state === STATE.OPEN) {
+         t.update(roomRef, { opponentId, state: STATE.CLOSED })
+         return Promise.resolve('Added opponent to the room.');
+       } else {
+         return Promise.reject('Room is not open.');
+       }
+    } catch (error) {
+      throw new Error(`Error addPlayerToRoom: ${error}`)
+    }
+  })
+}
 ```
