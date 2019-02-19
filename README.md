@@ -31,7 +31,7 @@ getTweet(tweetId: string) {
       shards$,
       userLikesTweet$,
       (tweet: Tweet, { isLiking }, shards) => {
-        const countLikes = shards.reduce((acc, { count }) => acc + count, 0)
+        const countLikes: number = shards.reduce((acc, { count }) => acc + count, 0)
 
         return { ...post, isLiking, countLikes }
       }
