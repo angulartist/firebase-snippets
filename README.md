@@ -1,4 +1,4 @@
-# Some snippets I'm using cuz im lazy boi
+# Some snippets I'm using cuz im lazy boi :fire:
 
 ### Used libs
 ```ts
