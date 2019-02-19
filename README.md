@@ -16,6 +16,7 @@ destroy$: Subject<boolean> = new Subject<boolean>()
 
 ```ts
 getTweet(tweetId: string) {
+    // setting up some data flows
     const tweet$: Observable<{}> = docData(db.doc(`tweets/${tweetId}`), 'id')
     
     const shards$: Observable<{}[]> = collectionData(
@@ -26,6 +27,7 @@ getTweet(tweetId: string) {
       'id'
     )
 
+    // combining them into one observable
     combineLatest(
       tweet$,
       shards$,
