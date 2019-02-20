@@ -70,9 +70,6 @@ const addPlayerToRoom = (opponentId: string, roomRef: FirebaseFirestore.Document
     try {
       // Getting back the room document
       const roomSnapshot = await t.get(roomRef)
-      if(!roomSnapshot.exists){
-        throw new Error('Document not found');
-       }
       // Grab the key we want to check
       const { state } = roomSnapshot.data()
       // If the room is still open, add the opponent
