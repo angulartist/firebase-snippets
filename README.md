@@ -35,7 +35,7 @@ export interface Shard {
 ```ts
 getTweet(tweetId: string) {
     // setting up some data flows
-    const tweet$: Observable<Post> = docData(db.doc(`tweets/${tweetId}`), 'id')
+    const tweet$: Observable<Tweet> = docData(db.doc(`tweets/${tweetId}`), 'id')
     
     const shards$: Observable<Shard[]> = collectionData(
       db.collection(`tweets/${tweetId}/shards`), 'id')
@@ -54,7 +54,7 @@ getTweet(tweetId: string) {
     )
       // fuk u memory leak
       .pipe(takeUntil(/* some Subject<boolean> */))
-      .subscribe((post: Post) => (/* do whatever you please */)
+      .subscribe((post: Tweet) => (/* do whatever you please */)
   }
 ```
 
