@@ -1,9 +1,11 @@
 # Some snippets I'm using cuz im lazy boi :fire:
 
+### Used libs
 
-```ts
-// here, db is just holding the firestore() function
-```
+- RxFire
+- RxJS
+
+> here, db is just holding the firestore() function
 
 ### Getting a tweet and it's aggregated distributed counters
 
@@ -30,11 +32,26 @@ destroy$: Subject<boolean> = new Subject<boolean>()
 ---
 
 ```ts
+export interface Post {
+  id: string
+  authorName: string
+  content: string
+  countLikes?: number
+}
+
+export interface Shard {
+   // you might (not) grab the id
+   id?: string
+   count: number
+}
+```
+
+```ts
 getTweet(tweetId: string) {
     // setting up some data flows
-    const tweet$: Observable<{}> = docData(db.doc(`tweets/${tweetId}`), 'id')
+    const tweet$: Observable<Post> = docData(db.doc(`tweets/${tweetId}`), 'id')
     
-    const shards$: Observable<{}[]> = collectionData(
+    const shards$: Observable<Shard[]> = collectionData(
       db.collection(`tweets/${tweetId}/shards`), 'id')
 
     // combining them into one observable
