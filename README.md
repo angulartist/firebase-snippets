@@ -44,7 +44,7 @@ getTweet(tweetId: string) {
     combineLatest(
       tweet$,
       shards$,
-      (tweet: Tweet, shards) => {
+      (tweet: Tweet, shards: Shard[]) => {
         // merging the counter value of each shard
         const countLikes: number = shards.reduce((acc, { count }) => acc + count, 0)
            
