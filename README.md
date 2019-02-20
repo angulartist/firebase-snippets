@@ -18,7 +18,7 @@
 ---
 
 ```ts
-export interface Post {
+export interface Tweet {
   id: string
   authorName: string
   content: string
