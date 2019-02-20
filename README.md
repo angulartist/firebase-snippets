@@ -17,20 +17,6 @@
 
 ---
 
-#### Used libs
-```ts
-import { docData, collectionData } from 'rxfire/firestore'
-import { Subject, combineLatest } from 'rxjs'
-import { takeUntil } from 'rxjs/operators'
-```
-
-```ts
-// used to be unsubscribed when component is destroyed/unmounted [!memory-leak]
-destroy$: Subject<boolean> = new Subject<boolean>()
-```
-
----
-
 ```ts
 export interface Post {
   id: string
@@ -67,7 +53,7 @@ getTweet(tweetId: string) {
       }
     )
       // fuk u memory leak
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(/* some Subject<boolean> */))
       .subscribe((post: Post) => (/* do whatever you please */)
   }
 ```
@@ -75,6 +61,7 @@ getTweet(tweetId: string) {
 ### Basic transaction to add a player to a room
 
 > Imagine you have a basic game holding some rooms and each room have 2 slots. One slot for the owner, one slot for the owner's opponent. With some high traffic app, you might get into this situation : multiple players trying to join the same room at the same time. You might end up with 5, 6 or 20 players in a room and that shit gonna breaks. So, to deal with these concurrent situations, you have to use transactions. In this example, we're reading the up-to-date room state before adding a player. If the room is still open... add a player, otherwise reject.
+
 ---
 
 ```ts
