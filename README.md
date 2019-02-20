@@ -65,6 +65,11 @@ getTweet(tweetId: string) {
 ---
 
 ```ts
+export enum STATE {
+  OPEN,
+  CLOSED
+}
+
 const addPlayerToRoom = (opponentId: string, roomRef: FirebaseFirestore.DocumentReference): Promise<void> => {
   return db.runTransaction(async t => {
     try {
