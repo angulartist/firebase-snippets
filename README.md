@@ -15,7 +15,7 @@
 
 > Note2: there is another workaround using Cloud Dataflow and pubsub topics to aggregate a large amount of user inputs and write them back to Firestore. [Read more](https://medium.com/evenbit/aggregate-thousands-of-inputs-per-second-with-firebase-76111212b850)
 
-![Representation](https://i.imgur.com/L3ZGAhW.png)
+![Representation](https://i.imgur.com/WzKAiiG.png)
 *Representation*
 
 ---
