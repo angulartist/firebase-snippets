@@ -65,6 +65,9 @@ getTweet(tweetId: string) {
 
 > Imagine you have a basic game holding some rooms and each room have 2 slots. One slot for the owner, one slot for the owner's opponent. With some high traffic app, you might get into this situation : multiple players trying to join the same room at the same time. You might end up with 5, 6 or 20 players in a room and that shit gonna breaks. So, to deal with these concurrent situations, you have to use transactions. In this example, we're reading the up-to-date room state before adding a player. If the room is still open... add a player, otherwise reject.
 
+![Transaction](https://i.imgur.com/eWBSyGC.png)
+*Representation*
+
 ---
 
 ```ts
